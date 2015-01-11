@@ -29,6 +29,8 @@ int main ()
 {
 	Ship	hero(0, 0, '>');
 	Ship *enemy= new Ship[10];
+	Projectile* laser = new Projectile[100];
+	int p = 0;
 	int max_x = 0;
 	int max_y = 0;
 	int i = 0;
@@ -80,6 +82,21 @@ int main ()
 				if (hero.getNextX() > 0) // et on bouge que si possible
 					hero.setX(hero.getX() - hero.getSpeed());
 			}
+			if (ch == 'p')
+			{
+				laser[p].setY(hero.getY());
+				p++;
+			}
+		}
+		i = 0;
+		while (i < p)
+		{
+			if (laser[i].getX() < max_x)
+			{
+				laser[i].setX(laser[i].getX() + enemy[i].getSpeed());
+				mvprintw(laser[i].getY(), laser[i].getX(), "-");
+			}	
+			i++;
 		}
 		i = 0;
 		while (i < 10)
@@ -97,6 +114,10 @@ int main ()
 			if (enemy[i].getX() == hero.getX() && enemy[i].getY() == hero.getY())
 			{
 				collision++;
+				hero.setX(hero.getX() - 1);
+				mvprintw(enemy[i].getY(), enemy[i].getX(), "X");
+				enemy[i].setX(rand() % (max_x - 5) + max_x);
+				enemy[i].setY(rand() % 11);
 			}
 			mvprintw(enemy[i].getY(), enemy[i].getX(), "%c", enemy[i].getVisual());
 			i++;
