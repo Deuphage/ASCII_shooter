@@ -6,93 +6,46 @@
 /*   By: marene <marene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 14:54:00 by marene            #+#    #+#             */
-/*   Updated: 2015/01/10 17:36:39 by marene           ###   ########.fr       */
+/*   Updated: 2015/01/11 17:32:36 by marene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Ship.class.hpp>
 
-Ship::Ship(void): Element::Element()
+Ship::Ship(): Projectile()
 {
-	this->_nextX = 0;
-	this->_speed = 1;
-	this->_maxSpeed = 3;
-	// this->_weapon = Weapon();
+	Weapon	tmp = Weapon();
+	this->_weapon = tmp;
 }
 
-Ship::Ship(int X, int Y, char symbol): Element::Element(X, Y, symbol)
+Ship::Ship(int x, int y, char symbol): Projectile(x, y, symbol)
 {
-	this->_nextX = 0;
-	this->_speed = 1;
-	this->_maxSpeed = 3;
-	// this->_weapon = Weapon();
+	Weapon	tmp = Weapon();
+	this->_weapon = tmp;
 }
 
-Ship::Ship(Ship const& src): Element(src)
+Ship::Ship(Ship const& src): Projectile(src)
 {
-	this->_speed = src.getSpeed();
-	this->_maxSpeed = src.getMaxSpeed();
-	// this->_weapon = src.getWeapon();
-}
-
-Ship&			Ship::operator=(Ship const& rh)
-{
-	this->_X = rh.getX();
-	this->_Y = rh.getY();
-	this->_symbol = rh.getSymbol();
-	this->_speed = rh.getSpeed();
-	this->_maxSpeed = rh.getMaxSpeed();
-	// this->_weapon = rh.getWeapon();
-
-	return (*this);
+	this->_weapon = src.getWeapon();
 }
 
 Ship::~Ship()
 {
-
+	return ;
 }
 
-int				Ship::getNextX() const
+Ship&			Ship::operator=(Ship const& rh)
 {
-	return (this->_nextX);
+	this->_weapon = rh.getWeapon();
+	return (*this);
 }
 
-int				Ship::getNextY() const
+Weapon			Ship::getWeapon() const
 {
-	return (this->_nextY);
+	return (this->_weapon);
 }
 
-int				Ship::getSpeed() const
+void			Ship::setWeapon(Weapon const& weapon)
 {
-	return (this->_speed);
+	this->_weapon = weapon;
 }
-
-int				Ship::getMaxSpeed() const
-{
-	return (this->_maxSpeed);
-}
-
-// Weapon&			Ship::getWeapon() const
-// {
-// 	return (this->_weapon);
-// }
-
-void			Ship::setSpeed(int speed)
-{
-	this->_speed = speed;
-}
-
-void			Ship::setNextX(int next)
-{
-	this->_nextX = next;
-}
-
-void			Ship::setNextY(int next)
-{
-	this->_nextY = next;
-}
-
-// void			Ship::setWeapon(Weapon const& weapon)
-// {
-// 	this->_weapon = weapon;
-// }

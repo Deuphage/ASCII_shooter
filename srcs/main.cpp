@@ -91,14 +91,14 @@ int main ()
 			}
 			else
 			{
-				enemy[i].setX(rand() % max_x);
-				enemy[i].setY(rand() % 10);
+				enemy[i].setX(rand() % (max_x - 5) + max_x);
+				enemy[i].setY(rand() % 11);
 			}
 			if (enemy[i].getX() == hero.getX() && enemy[i].getY() == hero.getY())
 			{
 				collision++;
 			}
-			mvprintw(enemy[i].getY(), enemy[i].getX(), "%c", enemy[i].getSymbol());
+			mvprintw(enemy[i].getY(), enemy[i].getX(), "%c", enemy[i].getVisual());
 			i++;
 		}
 		i = 0;
@@ -107,8 +107,8 @@ int main ()
 			mvprintw(11, i, "#");
 			i++;
 		}
-		mvprintw(hero.getY(), hero.getX() , "%c", hero.getSymbol());
-		mvprintw(11, 0 , "DEAD: %d", collision);
+		mvprintw(hero.getY(), hero.getX() , "%c", hero.getVisual());
+		mvprintw(12, 0 , "DEAD: %d", collision);
 		refresh();
 		usleep(30000);
 	}

@@ -6,9 +6,11 @@ CFLAGS =			-Wall -Wextra -Werror\
 LDFLAGS =			-lncurses -o
 SRC_DIR =			./srcs/
 OBJ_DIR =			./obj/
-SRCS =				main.cpp \
-					Element.class.cpp \
-					Ship.class.cpp
+SRCS =				Element.class.cpp \
+					Projectile.class.cpp \
+					Ship.class.cpp \
+					Weapon.class.cpp \
+					main.cpp
 OBJ =				$(SRCS:.cpp=.o)
 
 all: $(OBJ_DIR) $(NAME)
